@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <HelloWorld msg="You did it!" />
+  <HelloWorld />
+  <RouterView />
 </template>
 
 <style scoped>
