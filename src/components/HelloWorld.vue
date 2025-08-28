@@ -7,6 +7,6 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <h1 class="green">{{ msg }}</h1>
+  <h1 class="text-3xl font-black">{{ msg }}</h1>
 </template>
 
