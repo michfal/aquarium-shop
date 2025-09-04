@@ -1,0 +1,8 @@
+@theme {
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --font-logo: "Montserrat", sans-serif;
+
+  --color-brand: #1e90ff;
+  --color-deep-navy: #01273B;
+}
