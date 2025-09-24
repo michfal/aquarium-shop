@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineProps } from 'vue';
+
+defineProps<{
+  name?: string,
+  desc?: string,
+}>()
+</script>
 <template>
   <article class="flex items-center gap-4 w-full rounded-3xl bg-sky-50 p-4 sm:gap-6 sm:p-6 ">
     <div class="shrink-0 grid place-items-center w-20 h-28 sm:w-24 sm:h-32">
@@ -12,11 +19,11 @@
 
     <div class="">
       <h3 class="font-medium color-deep-navy text-xl sm:text-xl leading-tight">
-        Filtry i pompy
+        {{ name }}
       </h3>
 
       <p class="mt-1 text-xs sm:text-sm text-black/60 max-w-[28ch]">
-        Semizzao piztė aaivreedl piume.
+        {{desc}}
       </p>
 
       <a

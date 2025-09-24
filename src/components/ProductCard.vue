@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 <template>
 <!-- KARTA PRODUKTU -->
 <article class="w-full rounded-2xl border border-slate-200/50 bg-gray-50 shadow-sm p-4 
