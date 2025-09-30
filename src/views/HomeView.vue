@@ -25,11 +25,11 @@ const route = useRoute()
 const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery()
 const { data: recommended, isLoading: recLoading, error: recError } = useRecommendedProductsQuery()
 //const { data: recommended, isLoading: recLoading, error: recError } = useProductsQuery()
-onMounted(() => {
-  recommended?.value.forEach(c => {
-  console.log(c)
-})
-}) 
+// onMounted(() => {
+//   recommended?.value.forEach(c => {
+//   console.log(c)
+// })
+//}) 
 
 </script>
 
