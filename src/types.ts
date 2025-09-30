@@ -7,10 +7,13 @@ export type Category = {
 }
 
 export type Product = {
-  id: string
+  id: number
   name: string
   price: number
-  category_id: string
-  image_url?: string
+  category_id: number
+  image?: string
   recommended?: boolean
+  slug: string
 }
+
+export type ProductWitUrl = Product & { imageUrl: string | null }

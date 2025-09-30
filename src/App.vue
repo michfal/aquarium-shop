@@ -7,7 +7,7 @@ import TestImage from './components/TestImage.vue';
 
 <template>
   <MainNavbar />
-  <TestImage />
-  <!-- <RouterView /> -->
+  <!-- <TestImage /> -->
+  <RouterView />
   <MainFooter />
 </template>
