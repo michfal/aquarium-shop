@@ -4,6 +4,7 @@ export type Category = {
   slug: string
   description: string
   image_url?: string
+  image?: string
 }
 
 export type Product = {
@@ -17,3 +18,4 @@ export type Product = {
 }
 
 export type ProductWitUrl = Product & { imageUrl: string | null }
+export type CategoryWithUrl = Category & { imageUrl: string | null}

@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 
 defineProps<{
   name?: string,
   desc?: string,
+  imageSrc?: string | null
 }>()
 </script>
 <template>
   <article class="flex items-center gap-4 w-full rounded-3xl bg-sky-50 p-4 sm:gap-6 sm:p-6 ">
     <div class="shrink-0 grid place-items-center w-20 h-28 sm:w-24 sm:h-32">
       <img
-        src="@/assets/img/filter-1.png"
-        alt="Filtr zewnętrzny do akwarium"
+        v-if="imageSrc"
+        :src="imageSrc"
+        :alt="name"
         class="h-24 sm:h-28 w-auto object-contain"
         loading="lazy"
       />
+      <div v-else class="bg-black h-full w-full rounded-lg bg-sky-100 opacity-70"></div>
     </div>
 
-    <div class="">
+    <div>
       <h3 class="font-medium color-deep-navy text-xl sm:text-xl leading-tight">
         {{ name }}
       </h3>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 
 defineProps<{
   name?: string,
@@ -19,6 +18,7 @@ grid grid-cols-2 grid-rows-2 sm:flex sm:flex-col">
       :src="imageSrc"
       alt="Internal filter"
       class="h-full w-full object-contain"
+      loading="lazy"
     />
   </div>
 

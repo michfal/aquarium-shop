@@ -1,20 +1,8 @@
 import { supabase } from '@/api/supabase'
 import type { Product, ProductWitUrl } from '@/types'
+import { getSignUrlMany } from './images'
 
 const BUCKET = 'product-images'
-
-async function signMany(paths: string[], expiresIn = 60 *60) {
-  if(paths.length === 0) return []
-
-  const {data, error} = await supabase
-    .storage
-    .from(BUCKET)
-    .createSignedUrls(paths, expiresIn)
-
-    if(error) throw error
-
-    return data?.map(d => d?.signedUrl ?? null) ?? []
-}
 
 export async function getProducts(): Promise<Product[]> {
   const { data, error } = await supabase.from('products').select('*').order('id')
@@ -25,7 +13,7 @@ export async function getProducts(): Promise<Product[]> {
 export async function getProductsWithImages(): Promise<ProductWitUrl[]> {
   const products = await getProducts()
   const paths = products.map(p => p.image ?? '').filter(Boolean)
-  const signed = await signMany(paths)
+  const signed = await getSignUrlMany(paths, BUCKET)
 
   let idx = 0
   return products.map(p => {
@@ -51,7 +39,7 @@ export async function getProductsByCategory(categoryId: number): Promise<Product
 export async function getProductsByCategoryWithImages(categoryId: number): Promise<ProductWitUrl[]> {
   const products = await getProductsByCategory(categoryId)
   const paths = products.map(p => p.image ?? '').filter(Boolean)
-  const signed = await signMany(paths)
+  const signed = await getSignUrlMany(paths, BUCKET)
 
   let idx = 0
   return products.map(p => {
@@ -77,7 +65,7 @@ export async function getRecommended(limit = 3): Promise<Product[]> {
 export async function getRecommendedWithImages(limit = 3): Promise<ProductWitUrl[]> {
   const products = await getRecommended(limit)
   const paths = products.map(p => p.image ?? '').filter(Boolean)
-  const signed = await signMany(paths)
+  const signed = await getSignUrlMany(paths, BUCKET)
 
   let idx = 0
   return products.map(p => {
