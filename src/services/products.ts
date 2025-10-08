@@ -12,18 +12,16 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProductsWithImages(): Promise<ProductWitUrl[]> {
   const products = await getProducts()
-  const paths = products.map(p => p.image ?? '').filter(Boolean)
-  const signed = await getSignUrlMany(paths, BUCKET)
+  const withImages = products.filter(p => p.image)
 
-  let idx = 0
-  return products.map(p => {
-    let imageUrl: string | null = null
-    if (p.image) {
-      imageUrl = signed[idx] ?? null
-      idx += 1
-    }
-    return {...p, imageUrl}
-  })
+  const signed = await getSignUrlMany(withImages.map(c => c.image!), BUCKET)
+  
+  const urlMap = new Map(withImages.map((c, i) => [c.image!, signed[i] ?? null]))
+  
+  return products.map(c => ({
+    ...c,
+    imageUrl: c.image ? urlMap.get(c.image) ?? null : null,
+  }))
 }
 
 export async function getProductsByCategory(categoryId: number): Promise<Product[]> {
@@ -38,18 +36,16 @@ export async function getProductsByCategory(categoryId: number): Promise<Product
 
 export async function getProductsByCategoryWithImages(categoryId: number): Promise<ProductWitUrl[]> {
   const products = await getProductsByCategory(categoryId)
-  const paths = products.map(p => p.image ?? '').filter(Boolean)
-  const signed = await getSignUrlMany(paths, BUCKET)
+  const withImages = products.filter(p => p.image)
 
-  let idx = 0
-  return products.map(p => {
-    let imageUrl: string | null = null
-    if (p.image) {
-      imageUrl = signed[idx] ?? null
-      idx += 1
-    }
-    return {...p, imageUrl}
-  })
+  const signed = await getSignUrlMany(withImages.map(c => c.image!), BUCKET)
+  
+  const urlMap = new Map(withImages.map((c, i) => [c.image!, signed[i] ?? null]))
+  
+  return products.map(c => ({
+    ...c,
+    imageUrl: c.image ? urlMap.get(c.image) ?? null : null,
+  }))
 }
 
 export async function getRecommended(limit = 3): Promise<Product[]> {
@@ -64,16 +60,14 @@ export async function getRecommended(limit = 3): Promise<Product[]> {
 
 export async function getRecommendedWithImages(limit = 3): Promise<ProductWitUrl[]> {
   const products = await getRecommended(limit)
-  const paths = products.map(p => p.image ?? '').filter(Boolean)
-  const signed = await getSignUrlMany(paths, BUCKET)
+  const withImages = products.filter(p => p.image)
 
-  let idx = 0
-  return products.map(p => {
-    let imageUrl: string | null = null
-    if (p.image) {
-      imageUrl = signed[idx] ?? null
-      idx += 1
-    }
-    return {...p, imageUrl}
-  })
+  const signed = await getSignUrlMany(withImages.map(c => c.image!), BUCKET)
+  
+  const urlMap = new Map(withImages.map((c, i) => [c.image!, signed[i] ?? null]))
+  
+  return products.map(c => ({
+    ...c,
+    imageUrl: c.image ? urlMap.get(c.image) ?? null : null,
+  }))
 }

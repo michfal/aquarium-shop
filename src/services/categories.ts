@@ -13,7 +13,7 @@ export async function getCategories(): Promise<Category[]> {
 export async function getCategoriesWithImages(): Promise<CategoryWithUrl[]> {
   const categories = await getCategories()
     const withImages = categories.filter(c => c.image)
-    console.log(withImages.map(c => c.image!))
+    
     const signed = await getSignUrlMany(withImages.map(c => c.image!), BUCKET)
 
     const urlMap = new Map(withImages.map((c, i) => [c.image!, signed[i] ?? null]))
