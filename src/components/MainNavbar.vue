@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
+import { RouterLink } from 'vue-router';
 const isOpen = ref(false);
+const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery();
 </script>
 
 <template>
   <header class="h-16 bg-deep-navy flex items-center px-5">
     <nav class="flex items-center w-full justify-between relative">
-      <a id="logo" href="/">
+      <RouterLink id="logo" to="/">
         <span class="text-3xl text-white font-logo">AQUA-SHOP</span>
-      </a>
+      </RouterLink>
 
       <transition>
-      <ul v-if="isOpen" class="flex flex-col absolute top-0 right-0 mt-12 -mr-5 bg-deep-navy p-4 rounded-bl-xl">
-        <li><a class="text-white" href="/">Food</a></li>
-        <li><a class="text-white" href="/about">Plants</a></li>
-        <li><a class="text-white" href="/contact">Decoration</a></li>
-        <li><a class="text-white" href="/contact">Lights</a></li>
-        <li><a class="text-white" href="/contact">Filters and Pumps</a></li>
-        <li><a class="text-white" href="/contact">Tanks and Kits</a></li>
-      </ul>
+      <div v-if="isOpen" class="flex flex-col absolute top-0 right-0 mt-12 -mr-5 bg-deep-navy p-4 rounded-bl-xl">
+        <ul v-if="categories">
+          <li v-for="c in categories" :key="c.id">
+          <RouterLink  class="text-white" :to="'/categories/' + c.id">
+            {{c.name}}
+          </RouterLink>
+          </li>
+        </ul>
+      </div>
       </transition>
       <button 
         @click="isOpen = !isOpen" 

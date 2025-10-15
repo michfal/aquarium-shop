@@ -1,5 +1,7 @@
+import type { Ref } from 'vue'
+
 export type Category = {
-  id: string
+  id: number
   name: string
   slug: string
   description: string
@@ -19,3 +21,5 @@ export type Product = {
 
 export type ProductWitUrl = Product & { imageUrl: string | null }
 export type CategoryWithUrl = Category & { imageUrl: string | null}
+
+export type MaybeRef<T> = T | Ref<T>

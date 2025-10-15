@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 
 defineProps<{
   name?: string,
   desc?: string,
-  imageSrc?: string | null
+  imageSrc?: string | null,
+  id?: number
 }>()
 </script>
 <template>
@@ -28,12 +30,12 @@ defineProps<{
         {{desc}}
       </p>
 
-      <a
-        href="#"
+      <RouterLink
+        :to="'/categories/' + id"
         class="mt-3 inline-block font-medium tracking-wide text-sm text-brand-orange hover:underline"
       >
-        SPRAWDŹ
-      </a>
+        View more
+      </RouterLink>
     </div>
   </article>
 </template>

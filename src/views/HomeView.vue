@@ -5,17 +5,19 @@ import NewsLetter from '@/components/NewsLetter.vue';
 import MainHeading from '@/components/MainHeading.vue';
 import { useRecommendedProductsQuery } from '@/composables/useProductsQuery';
 import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 
 defineProps<{
   title?: string
 }>();
 
-const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery()
-const { data: recommended, isLoading: recLoading, error: recError } = useRecommendedProductsQuery()
+const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery();
+const { data: recommended, isLoading: recLoading, error: recError } = useRecommendedProductsQuery();
 
-onMounted(()=> {
-  
+watch(categories, (newVal) => {
+  if (newVal) {
+    console.log('Kategorie:', newVal)
+  }
 })
 
 </script>
@@ -30,7 +32,8 @@ onMounted(()=> {
     <p v-else-if="catError">Błąd: {{ catError.message }}</p>
     <div v-else class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       <CategoryCard v-for="c in categories" 
-      :key="c.id" 
+      :key="c.id"
+      :id="Number(c.id)"
       :name="c.name" 
       :desc="c.description"
       :imageSrc="c.imageUrl"
