@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 
 </script>
 
@@ -7,16 +8,16 @@
   <div class="mx-auto max-w-7xl px-4">
     <div class="flex h-14 items-center justify-between gap-6">
       <!-- Logo -->
-      <a href="/" class="font-heading font-bold tracking-wider text-white text-xl uppercase">
+      <RouterLink to="/" class="font-heading font-bold tracking-wider text-white text-xl uppercase">
         AQUA-SHOP
-      </a>
+      </RouterLink>
 
       <!-- Linki (desktop) -->
       <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="/regulamin" class="text-white/90 hover:text-white transition-colors">Regulamin</a>
-        <a href="/kontakt" class="text-white/90 hover:text-white transition-colors">Kontakt</a>
-        <a href="/faq" class="text-white/90 hover:text-white transition-colors">FAQ</a>
-        <a href="/zwroty" class="text-white/90 hover:text-white transition-colors">Zwroty</a>
+        <RouterLink to="/terms" class="text-white/90 hover:text-white transition-colors">Terms And Conditions</RouterLink>
+        <RouterLink to="/contact" class="text-white/90 hover:text-white transition-colors">Contact</RouterLink>
+        <RouterLink to="/faq" class="text-white/90 hover:text-white transition-colors">FAQ</RouterLink>
+        <!-- <RouterLink to="/complaints" class="text-white/90 hover:text-white transition-colors">Zwroty</RouterLink> -->
       </nav>
 
       <!-- Ikony -->
@@ -40,10 +41,10 @@
 
     <!-- Linki (mobile – pod paskiem) -->
     <nav class="md:hidden flex items-center gap-4 py-2 text-sm overflow-x-auto">
-      <a href="/regulamin" class="text-white/90 hover:text-white whitespace-nowrap">Regulamin</a>
-      <a href="/kontakt" class="text-white/90 hover:text-white whitespace-nowrap">Kontakt</a>
-      <a href="/faq" class="text-white/90 hover:text-white whitespace-nowrap">FAQ</a>
-      <a href="/zwroty" class="text-white/90 hover:text-white whitespace-nowrap">Zwroty</a>
+      <RouterLink to="/terms" class="text-white/90 hover:text-white whitespace-nowrap">Terms and Conditions</RouterLink>
+      <RouterLink to="/contact" class="text-white/90 hover:text-white whitespace-nowrap">Contact</RouterLink>
+      <RouterLink to="/faq" class="text-white/90 hover:text-white whitespace-nowrap">FAQ</RouterLink>
+      <!-- <RouterLink to="/zwroty" class="text-white/90 hover:text-white whitespace-nowrap">Zwroty</RouterLink> -->
     </nav>
   </div>
 </footer>

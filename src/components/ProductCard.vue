@@ -8,9 +8,8 @@ defineProps<{
 }>()
 </script>
 <template>
-<!-- KARTA PRODUKTU -->
-<article class="w-full rounded-2xl border border-slate-200/50 bg-gray-50 shadow-sm p-4 
-grid grid-cols-2 grid-rows-2 sm:flex sm:flex-col">
+
+<article class="w-full rounded-2xl border border-slate-200/50 bg-gray-50 shadow-sm p-4 grid grid-cols-2 grid-rows-2 sm:flex sm:flex-col">
   <!-- obrazek -->
   <div class="mx-auto aspect-[1/1] w-36 overflow-hidden row-span-3">
     <img
