@@ -1,7 +1,8 @@
-import { useQuery } from '@tanstack/vue-query'
-import { computed, unref } from 'vue'
-import { getProductsWithImages, getProductsByCategoryWithImages, getRecommendedWithImages } from '@/services/products'
-import type { MaybeRef } from '@/types'
+import { useQuery, useQueryClient } from '@tanstack/vue-query';
+import { computed, unref } from 'vue';
+import { useRoute } from 'vue-router';
+import { getProductsWithImages, getProductsByIdWithImages, getProductsByCategoryWithImages, getRecommendedWithImages } from '@/services/products';
+import type { MaybeRef, Product, ProductWitUrl } from '@/types';
 
 export function useProductsQuery(opts?: { categoryId?: MaybeRef<number> }) {
   const catId = computed(() => unref(opts?.categoryId))
@@ -20,6 +21,33 @@ export function useProductsQuery(opts?: { categoryId?: MaybeRef<number> }) {
     retry: 2,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
+  })
+}
+
+export function useProductQuery() {
+  const route = useRoute()
+  const id = computed(() => Number(route.params.id))
+
+  const queryClient = useQueryClient()
+
+  const seedFromLists = (): ProductWitUrl | undefined => {
+    // Weź WSZYSTKIE listy produktów z cache’u (np. ['products', null], ['products', 20], itp.)
+    const lists = queryClient.getQueriesData<ProductWitUrl[]>({ queryKey: ['products'] })
+    for (const [, list] of lists) {
+      const found = list?.find(p => p.id === id.value)
+      if (found) return found
+    }
+    return undefined
+  }
+
+  const seeded = seedFromLists()
+
+  return useQuery({
+    queryKey: ['product', id],
+    queryFn: () => getProductsByIdWithImages(id.value),
+    enabled: computed(() => Number.isFinite(id.value)),
+    ...(seeded && { initialData: seeded }), // tylko gdy mamy seed
+    staleTime: 60_000,
   })
 }
 

@@ -24,6 +24,28 @@ export async function getProductsWithImages(): Promise<ProductWitUrl[]> {
   }))
 }
 
+export async function getProductById(productId: number): Promise<Product | null> {
+    const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', productId)
+    .maybeSingle()
+
+    if (error) throw error
+    return data
+}
+
+export async function getProductsByIdWithImages(productId: number): Promise<ProductWitUrl | null> {
+  const product = await getProductById(productId)
+  if (!product) return null
+
+  const signed = product.image
+    ? (await getSignUrlMany([product.image], BUCKET))[0] ?? null
+    : null
+
+  return { ...product, imageUrl: signed }
+}
+
 export async function getProductsByCategory(categoryId: number): Promise<Product[]> {
   const { data, error } = await supabase
     .from('products')

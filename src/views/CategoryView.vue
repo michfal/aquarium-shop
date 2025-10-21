@@ -25,7 +25,7 @@ const category = computed(() =>
     <section class="py-9 px-5">
     <h1 class="max-w-5xl mx-auto font-heading text-2xl text-left pb-5">{{ category?.name }}</h1>
     <div v-if="prodLoading" class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-      <p>Ładowanie kategorii…</p>
+      <p>Categories loading...</p>
     </div>
     <p v-else-if="prodError">Błąd: {{ prodError.message }}</p>
     <div v-else class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
@@ -34,7 +34,8 @@ const category = computed(() =>
       :price="p.price" 
       :imageSrc="p.imageUrl"
       :alt="p.name"
-      :key="p.id"/>
+      :key="p.id"
+      :id="p.id"/>
     </div>
   </section>
 </template>

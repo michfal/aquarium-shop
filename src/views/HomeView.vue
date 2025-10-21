@@ -49,6 +49,7 @@ watch(categories, (newVal) => {
     <div v-else class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       <ProductCard v-for="p in recommended"
       :name="p.name"
+      :id="p.id"
       :price="p.price" 
       :imageSrc="p.imageUrl"
       :alt="p.name"

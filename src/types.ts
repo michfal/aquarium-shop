@@ -16,7 +16,8 @@ export type Product = {
   category_id: number
   image?: string
   recommended?: boolean
-  slug: string
+  slug: string,
+  description?: string
 }
 
 export type ProductWitUrl = Product & { imageUrl: string | null }
