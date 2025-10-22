@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CategoryCard from './CategoryCard.vue';
-import ProductCard from './ProductCard.vue';
 import { defineProps } from 'vue';
 
 const products = ref(['prod1', 'prod2', 'prod3']);

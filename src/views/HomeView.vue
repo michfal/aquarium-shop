@@ -5,7 +5,6 @@ import NewsLetter from '@/components/NewsLetter.vue';
 import MainHeading from '@/components/MainHeading.vue';
 import { useRecommendedProductsQuery } from '@/composables/useProductsQuery';
 import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
-import { onMounted, watch } from 'vue';
 
 defineProps<{
   title?: string
@@ -13,12 +12,6 @@ defineProps<{
 
 const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery();
 const { data: recommended, isLoading: recLoading, error: recError } = useRecommendedProductsQuery();
-
-watch(categories, (newVal) => {
-  if (newVal) {
-    console.log('Kategorie:', newVal)
-  }
-})
 
 </script>
 

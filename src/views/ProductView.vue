@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { watch } from 'vue';
 import MainHeading from '@/components/MainHeading.vue';
 import { useProductQuery } from '@/composables/useProductsQuery';
 
 const { data: product, isLoading: prodLoading, error: prodError } = useProductQuery()
 
-watch(product, (newVal) => {
-  if (newVal) {
-    console.log('Kategorie:', newVal)
-  }
-})
 </script>
 
 <template>

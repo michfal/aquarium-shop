@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/vue-query';
 import { computed, unref } from 'vue';
 import { useRoute } from 'vue-router';
 import { getProductsWithImages, getProductsByIdWithImages, getProductsByCategoryWithImages, getRecommendedWithImages } from '@/services/products';
-import type { MaybeRef, Product, ProductWitUrl } from '@/types';
+import type { MaybeRef, ProductWitUrl } from '@/types';
 
 export function useProductsQuery(opts?: { categoryId?: MaybeRef<number> }) {
   const catId = computed(() => unref(opts?.categoryId))
@@ -31,7 +31,6 @@ export function useProductQuery() {
   const queryClient = useQueryClient()
 
   const seedFromLists = (): ProductWitUrl | undefined => {
-    // Weź WSZYSTKIE listy produktów z cache’u (np. ['products', null], ['products', 20], itp.)
     const lists = queryClient.getQueriesData<ProductWitUrl[]>({ queryKey: ['products'] })
     for (const [, list] of lists) {
       const found = list?.find(p => p.id === id.value)
