@@ -11,7 +11,7 @@ const categoryId = computed(() => Number(route.params.id));
 
 const { data: products, isLoading: prodLoading, error: prodError } = useProductsQuery({ categoryId: categoryId})
 
-const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery();
+const { data: categories } = useCategoriesQuery();
 
 const category = computed(() => 
   categories.value?.find(c => c.id == categoryId.value)

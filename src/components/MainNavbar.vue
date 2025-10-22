@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
 import { RouterLink } from 'vue-router';
 const isOpen = ref(false);
-const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery();
+const { data: categories } = useCategoriesQuery();
 </script>
 
 <template>
