@@ -12,7 +12,7 @@ defineProps<{
 </script>
 <template>
 
-<article class="w-full rounded-2xl border border-slate-200/50 bg-gray-50 shadow-sm p-4 sm:flex sm:flex-col">
+<article class="w-full rounded-2xl border border-slate-200/50 bg-gray-50 shadow-sm p-4 sm:flex sm:flex-col hover:brightness-98">
   <!-- obrazek -->
   <RouterLink :to="'/product/' + id">
     <div class="mx-auto aspect-[1/1] w-36 overflow-hidden row-span-3">
