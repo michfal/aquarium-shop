@@ -20,7 +20,23 @@ export type Product = {
   description?: string
 }
 
-export type ProductWitUrl = Product & { imageUrl: string | null }
+export type ProductWithUrl = Product & { imageUrl?: string | null }
 export type CategoryWithUrl = Category & { imageUrl: string | null}
 
 export type MaybeRef<T> = T | Ref<T>
+
+export type CartItem = Omit<ProductWithUrl, "recommended"> & { qty: number }
+
+export type ShippingOption = {
+  id: string
+  name: string
+  price: number
+}
+
+export type CartState = {
+  items: CartItem[]
+  shippingMethod: ShippingOption | null
+  discount: number
+  v: 1
+}
+

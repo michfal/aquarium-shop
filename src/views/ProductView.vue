@@ -1,8 +1,27 @@
 <script setup lang="ts">
 import MainHeading from '@/components/MainHeading.vue';
 import { useProductQuery } from '@/composables/useProductsQuery';
+import type { ProductWithUrl } from '@/types';
+import { useCartStore } from '@/stores/cart'
+const cart = useCartStore()
 
 const { data: product, isLoading: prodLoading } = useProductQuery()
+
+function addToCart(product: ProductWithUrl) {
+  console.log('add')
+  cart.add(
+    {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category_id: product.category_id,
+      slug: product.slug,
+      imageUrl: product?.imageUrl,
+    },
+    1
+  )
+}
 
 </script>
 
@@ -36,7 +55,7 @@ const { data: product, isLoading: prodLoading } = useProductQuery()
           <div class="mt-8 flex items-stretch gap-3">
             <label class="sr-only" for="qty">Amount</label>
             <input id="qty" type="number" min="1" value="1" class="h-12 w-24 rounded-xl border border-slate-300 px-3 text-center text-base"/>
-            <button type="button" class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white font-semibold shadow-sm">Add to cart</button>
+            <button @click="product && addToCart(product)" type="button" class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white font-semibold shadow-sm">Add to cart</button>
           </div>
         
           <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
