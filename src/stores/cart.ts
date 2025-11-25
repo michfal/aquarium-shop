@@ -18,16 +18,16 @@ export const useCartStore = defineStore('cart', {
 
   getters: {
     products: (state) => state.items,
-    count: (state) => {
-      return (id: number | string) => {
+    itemQty: (state) => {
+      return (id: number ) => {
         const itemQty = state.items.find((item) => item.id === id)
-        return itemQty?.qty ?? null
+        return itemQty?.qty ?? 0
       }
     },
     countTotal: (state) => state.items.reduce((sum, item) => sum + item.qty, 0),
     subtotal: (state) => state.items.reduce((sum, item) => sum + item.price * item.qty, 0),
     lineTotal: (state) => {
-      return (id: number | string) => {
+      return (id: number ) => {
         const item = state.items.find((item) => item.id === id)
         return item ? item.price * item.qty : null
         
@@ -36,7 +36,11 @@ export const useCartStore = defineStore('cart', {
     isEmpty(): boolean { return this.items.length === 0 },
     shippingCost: (state) => state.shippingMethod?.price ?? 0,
     total(): number {
-      const total = this.subtotal + this.shippingCost - this.discount   
+      console.log(`subtotal: ${this.subtotal}`) 
+      console.log(`shippingCost: ${this.shippingCost}`) 
+      console.log(`discount: ${this.discount}`) 
+      const total = this.subtotal + this.shippingCost - this.discount
+      console.log(`total: ${total}`) 
       return total
     },
   },
@@ -45,10 +49,13 @@ export const useCartStore = defineStore('cart', {
     add(item: Omit<CartItem, 'qty'>, qty = 1) {
       if (qty <= 0) return
       const existing = this.items.find(i => i.id === item.id)
+      console.log(existing)
       if (existing) {
+        console.log('existing')
         existing.qty += qty
       } else {
         this.items.push({ ...item, qty })
+        console.log(this.items)
       }
     },
 
@@ -63,11 +70,12 @@ export const useCartStore = defineStore('cart', {
 
     remove(id: number) {
       this.items = this.items.filter(i => i.id !== id)
+      console.log(this.items)
     },
 
     clear() {
       this.items = []
-      this.$reset() // zachowa v
+      this.$reset()
     },
 
     // bezpiecznik cen – w krytycznych miejscach dociąga aktualne ceny z serwera

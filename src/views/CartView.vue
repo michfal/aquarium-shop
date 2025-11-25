@@ -6,19 +6,26 @@ import { onMounted, watch } from 'vue';
 import { useShippingOptions } from '@/composables/useShippingOptions';
 
 const cart = useCartStore();
-const { products, count, subtotal, lineTotal, isEmpty, shippingCost, total } = storeToRefs(cart)
+const { products, itemQty, subtotal, lineTotal, isEmpty, shippingCost, total } = storeToRefs(cart)
 
 const { options: shippingOptions, isLoading } = useShippingOptions();
 
-onMounted(() => {
-  console.log(total.value)
-  // console.log(shippingOptions.value)
+const inc = (id: number ) => {
+  cart.setQty(id, itemQty.value(id) + 1)
+}
 
-});
+const dec = (id: number) => {
+  const next = itemQty.value(id) - 1
+  cart.setQty(id, next)
+}
 
-watch(total, (total) => {
-  console.log(total)
-})
+const onQtyInput = (id: number, e: Event) => {
+  const target = e.target as HTMLInputElement
+  const value = Number(target.value)
+
+  const safe = Number.isFinite(value) && value > 0 ? value : 1
+  cart.setQty(id, safe)
+}
 
 </script>
 
@@ -71,13 +78,14 @@ watch(total, (total) => {
                 <!-- Ilość -->
                 <div class="md:text-center">
                   <div class="inline-flex items-center border border-slate-300 rounded-lg overflow-hidden bg-white">
-                    <button class="px-2 py-1 text-sm text-slate-500 hover:bg-slate-50">-</button>
+                    <button @click="dec(p.id)" class="px-2 py-1 text-sm text-slate-500 hover:bg-slate-50">-</button>
                     <input
                       type="number"
-                      :value="count(p.id)"
+                      :value="itemQty(p.id)"
+                      @change="onQtyInput(p.id, $event)"
                       class="w-10 border-0 text-center text-sm font-medium text-slate-800 focus:ring-0"
                     />
-                    <button class="px-2 py-1 text-sm text-slate-500 hover:bg-slate-50">+</button>
+                    <button @click="inc(p.id)" class="px-2 py-1 text-sm text-slate-500 hover:bg-slate-50">+</button>
                   </div>
                 </div>
 

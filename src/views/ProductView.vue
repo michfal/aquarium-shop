@@ -8,7 +8,7 @@ const cart = useCartStore()
 const { data: product, isLoading: prodLoading } = useProductQuery()
 
 function addToCart(product: ProductWithUrl) {
-  console.log('add')
+  
   cart.add(
     {
       id: product.id,
@@ -53,8 +53,8 @@ function addToCart(product: ProductWithUrl) {
           <p class="mt-6 text-slate-700 leading-relaxed">{{ product?.description }}</p>
         
           <div class="mt-8 flex items-stretch gap-3">
-            <label class="sr-only" for="qty">Amount</label>
-            <input id="qty" type="number" min="1" value="1" class="h-12 w-24 rounded-xl border border-slate-300 px-3 text-center text-base"/>
+            <!-- <label class="sr-only" for="qty">Amount</label>
+            <input id="qty" type="number" min="1" value="1" class="h-12 w-24 rounded-xl border border-slate-300 px-3 text-center text-base"/> -->
             <button @click="product && addToCart(product)" type="button" class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white font-semibold shadow-sm">Add to cart</button>
           </div>
         
