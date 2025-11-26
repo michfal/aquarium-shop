@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.node.json",
   "compilerOptions": {
-    "moduleResolution": "NodeNext",   // <— ważne dla skryptów uruchamianych w Node
+    "moduleResolution": "NodeNext", // <— ważne dla skryptów uruchamianych w Node
     "noEmit": true,
     "types": ["node"]
   },

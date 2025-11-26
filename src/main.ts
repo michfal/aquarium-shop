@@ -1,10 +1,10 @@
-import './assets/main.css'
-import router from './router'
-import { createApp } from 'vue'
-import App from './App.vue'
-import { VueQueryPlugin, QueryClient } from '@tanstack/vue-query'
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import './assets/main.css';
+import router from './router';
+import { createApp } from 'vue';
+import App from './App.vue';
+import { VueQueryPlugin, QueryClient } from '@tanstack/vue-query';
+import { createPinia } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,13 +14,13 @@ const queryClient = new QueryClient({
       refetchOnReconnect: true,
     },
   },
-})
+});
 
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 
-const app = createApp(App)
-app.use(router)
-app.use(VueQueryPlugin, { queryClient })
-app.use(pinia)
-app.mount('#app')
+const app = createApp(App);
+app.use(router);
+app.use(VueQueryPlugin, { queryClient });
+app.use(pinia);
+app.mount('#app');

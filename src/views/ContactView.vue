@@ -5,8 +5,7 @@
     <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8">
       <h1 class="text-3xl font-bold mb-6 text-center">Contact Us</h1>
       <p class="text-gray-600 text-center mb-10">
-        Have questions about our products, shipping, or aquarium care?  
-        We're here to help!
+        Have questions about our products, shipping, or aquarium care? We're here to help!
       </p>
 
       <div class="grid md:grid-cols-2 gap-10">
@@ -33,9 +32,7 @@
           <div>
             <h2 class="text-xl font-semibold mb-2">Phone</h2>
             <p>
-              <a href="tel:+48123456789" class="text-blue-600 underline">
-                +48 123 456 789
-              </a>
+              <a href="tel:+48123456789" class="text-blue-600 underline"> +48 123 456 789 </a>
             </p>
           </div>
 
@@ -58,15 +55,14 @@
               class="w-full h-64 object-cover"
             />
           </div>
-          <p class="text-sm text-gray-500 text-center mt-3">
-            Find us in the heart of Gdańsk!
-          </p>
+          <p class="text-sm text-gray-500 text-center mt-3">Find us in the heart of Gdańsk!</p>
         </div>
       </div>
 
       <div class="mt-12 border-t pt-8 text-center">
         <p class="text-gray-600">
-          Prefer to visit us in person? We’d love to meet you and help you choose the perfect setup for your aquarium.
+          Prefer to visit us in person? We’d love to meet you and help you choose the perfect setup
+          for your aquarium.
         </p>
         <button
           class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition"
