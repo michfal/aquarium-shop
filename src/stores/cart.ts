@@ -4,6 +4,10 @@ import type { CartItem, CartState, ShippingOption } from '@/types'
 
 const STORAGE_KEY = 'cart-v1'
 
+function toMoney(value: number): number {
+  return Math.round((value + Number.EPSILON) * 100) / 100
+}
+
 export const useCartStore = defineStore('cart', {
   state: (): CartState => ({
     items: [],
@@ -35,13 +39,9 @@ export const useCartStore = defineStore('cart', {
     },
     isEmpty(): boolean { return this.items.length === 0 },
     shippingCost: (state) => state.shippingMethod?.price ?? 0,
-    total(): number {
-      console.log(`subtotal: ${this.subtotal}`) 
-      console.log(`shippingCost: ${this.shippingCost}`) 
-      console.log(`discount: ${this.discount}`) 
-      const total = this.subtotal + this.shippingCost - this.discount
-      console.log(`total: ${total}`) 
-      return total
+    total(): number { 
+      const total = this.subtotal + this.shippingCost - this.discount 
+      return toMoney(total)
     },
   },
 
