@@ -35,7 +35,7 @@ const category = computed(() => categories.value?.find((c) => c.id == categoryId
       v-else
       class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
     >
-      <ProductCard
+      <!-- <ProductCard
         v-for="p in products"
         :name="p.name"
         :price="p.price"
@@ -43,6 +43,11 @@ const category = computed(() => categories.value?.find((c) => c.id == categoryId
         :alt="p.name"
         :key="p.id"
         :id="p.id"
+      /> -->
+      <ProductCard
+        v-for="p in products"
+        :product="p"
+        :key="p.id"
       />
     </div>
   </section>

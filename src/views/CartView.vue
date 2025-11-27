@@ -3,28 +3,19 @@ import MainHeading from '@/components/MainHeading.vue';
 import { useCartStore } from '@/stores/cart';
 import { storeToRefs } from 'pinia';
 import { useShippingOptions } from '@/composables/useShippingOptions';
+import { useCart } from '@/composables/useCart';
 
 const cart = useCartStore();
 const { products, itemQty, subtotal, lineTotal, isEmpty, total } = storeToRefs(cart);
 
 const { options: shippingOptions } = useShippingOptions();
 
-const inc = (id: number) => {
-  cart.setQty(id, itemQty.value(id) + 1);
-};
+const { inc, dec, setQtyFromInput } = useCart();
 
-const dec = (id: number) => {
-  const next = itemQty.value(id) - 1;
-  cart.setQty(id, next);
-};
-
-const onQtyInput = (id: number, e: Event) => {
+function onQtyInput(id: number, e: Event) {
   const target = e.target as HTMLInputElement;
-  const value = Number(target.value);
-
-  const safe = Number.isFinite(value) && value > 0 ? value : 1;
-  cart.setQty(id, safe);
-};
+  setQtyFromInput(id, target.value);
+}
 </script>
 
 <template>

@@ -5,6 +5,7 @@ import NewsLetter from '@/components/NewsLetter.vue';
 import MainHeading from '@/components/MainHeading.vue';
 import { useRecommendedProductsQuery } from '@/composables/useProductsQuery';
 import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
+import { watch } from 'vue';
 
 defineProps<{
   title?: string;
@@ -12,6 +13,10 @@ defineProps<{
 
 const { data: categories, isLoading: catLoading, error: catError } = useCategoriesQuery();
 const { data: recommended, isLoading: recLoading, error: recError } = useRecommendedProductsQuery();
+
+watch(recommended, () => {
+  console.log(recommended)
+} )
 </script>
 
 <template>
@@ -54,11 +59,7 @@ const { data: recommended, isLoading: recLoading, error: recError } = useRecomme
     >
       <ProductCard
         v-for="p in recommended"
-        :name="p.name"
-        :id="p.id"
-        :price="p.price"
-        :imageSrc="p.imageUrl"
-        :alt="p.name"
+        :product="p"
         :key="p.id"
       />
     </div>
