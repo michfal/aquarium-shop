@@ -1,41 +1,41 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive } from 'vue';
 
 const faqs = reactive([
   {
     question: 'How long does shipping take?',
     answer:
       'Orders are typically processed within 1–2 business days. Delivery within Poland usually takes 2–5 business days depending on your location.',
-    open: false
+    open: false,
   },
   {
     question: 'Can I return a product?',
     answer:
       'Yes, you can return any unused product within 14 days of delivery. Please ensure it’s in its original packaging and contact our support team first.',
-    open: false
+    open: false,
   },
   {
     question: 'Do you ship internationally?',
     answer:
       'Currently, we only deliver within the European Union. We plan to expand international shipping soon.',
-    open: false
+    open: false,
   },
   {
     question: 'Are live plants or animals included in shipping?',
     answer:
       'We only ship live plants under specific conditions to ensure their safety. We do not ship live animals at this time.',
-    open: false
+    open: false,
   },
   {
     question: 'What payment methods do you accept?',
     answer:
       'We accept major credit cards, PayPal, and secure bank transfers. All transactions are encrypted for your safety.',
-    open: false
-  }
-])
+    open: false,
+  },
+]);
 
 function toggle(index: number): void {
-  faqs[index].open = !faqs[index].open
+  faqs[index].open = !faqs[index].open;
 }
 </script>
 
@@ -48,15 +48,8 @@ function toggle(index: number): void {
       </p>
 
       <div class="divide-y divide-gray-200">
-        <div
-          v-for="(faq, i) in faqs"
-          :key="i"
-          class="py-4"
-        >
-          <button
-            @click="toggle(i)"
-            class="w-full flex justify-between items-center text-left"
-          >
+        <div v-for="(faq, i) in faqs" :key="i" class="py-4">
+          <button @click="toggle(i)" class="w-full flex justify-between items-center text-left">
             <span class="text-lg font-medium text-gray-900">
               {{ faq.question }}
             </span>

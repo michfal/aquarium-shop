@@ -1,14 +1,14 @@
 // eslint.config.ts
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { globalIgnores } from 'eslint/config';
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
+import pluginVue from 'eslint-plugin-vue';
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
 
 // __dirname dla ESM/TS i normalizacja ścieżki (ważne na Windows)
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const TS_ROOT = path.resolve(__dirname)
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const TS_ROOT = path.resolve(__dirname);
 
 export default defineConfigWithVueTs(
   {
@@ -33,6 +33,4 @@ export default defineConfigWithVueTs(
 
   // Wyłącza konflikty z Prettierem
   skipFormatting,
-)
-
-
+);

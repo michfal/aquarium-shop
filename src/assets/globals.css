@@ -1,19 +1,24 @@
 @layer base {
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-body {
-  @apply font-body text-deep-navy bg-gray-50;
-}
+  body {
+    @apply font-body text-deep-navy bg-gray-50;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-heading text-deep-navy font-semibold;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-deep-navy font-semibold;
+  }
 
-a {
-  @apply text-brand hover:underline;
-}
+  a {
+    @apply text-brand hover:underline;
+  }
 }

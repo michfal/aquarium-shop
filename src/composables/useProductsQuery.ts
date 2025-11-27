@@ -1,45 +1,48 @@
 import { useQuery, useQueryClient } from '@tanstack/vue-query';
 import { computed, unref } from 'vue';
 import { useRoute } from 'vue-router';
-import { getProductsWithImages, getProductsByIdWithImages, getProductsByCategoryWithImages, getRecommendedWithImages } from '@/services/products';
-import type { MaybeRef, ProductWitUrl } from '@/types';
+import {
+  getProductsWithImages,
+  getProductsByIdWithImages,
+  getProductsByCategoryWithImages,
+  getRecommendedWithImages,
+} from '@/services/products';
+import type { MaybeRef, ProductWithUrl } from '@/types';
 
 export function useProductsQuery(opts?: { categoryId?: MaybeRef<number> }) {
-  const catId = computed(() => unref(opts?.categoryId))
+  const catId = computed(() => unref(opts?.categoryId));
 
   return useQuery({
     queryKey: computed(() => ['products', Number.isFinite(catId.value) ? catId.value : null]),
-    queryFn: () => 
+    queryFn: () =>
       Number.isFinite(catId.value)
-      ? getProductsByCategoryWithImages(catId.value as number)
-      : getProductsWithImages(),
-    enabled: computed(() =>
-      opts?.categoryId ? Number.isFinite(catId.value) : true
-    ),
+        ? getProductsByCategoryWithImages(catId.value as number)
+        : getProductsWithImages(),
+    enabled: computed(() => (opts?.categoryId ? Number.isFinite(catId.value) : true)),
     staleTime: 60_000,
     gcTime: 5 * 60_000,
     retry: 2,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
-  })
+  });
 }
 
 export function useProductQuery() {
-  const route = useRoute()
-  const id = computed(() => Number(route.params.id))
+  const route = useRoute();
+  const id = computed(() => Number(route.params.id));
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
-  const seedFromLists = (): ProductWitUrl | undefined => {
-    const lists = queryClient.getQueriesData<ProductWitUrl[]>({ queryKey: ['products'] })
+  const seedFromLists = (): ProductWithUrl | undefined => {
+    const lists = queryClient.getQueriesData<ProductWithUrl[]>({ queryKey: ['products'] });
     for (const [, list] of lists) {
-      const found = list?.find(p => p.id === id.value)
-      if (found) return found
+      const found = list?.find((p) => p.id === id.value);
+      if (found) return found;
     }
-    return undefined
-  }
+    return undefined;
+  };
 
-  const seeded = seedFromLists()
+  const seeded = seedFromLists();
 
   return useQuery({
     queryKey: ['product', id],
@@ -47,7 +50,7 @@ export function useProductQuery() {
     enabled: computed(() => Number.isFinite(id.value)),
     ...(seeded && { initialData: seeded }), // tylko gdy mamy seed
     staleTime: 60_000,
-  })
+  });
 }
 
 export function useRecommendedProductsQuery(limit = 3) {
@@ -57,5 +60,5 @@ export function useRecommendedProductsQuery(limit = 3) {
     staleTime: 5 * 60_000,
     gcTime: 10 * 60_000,
     refetchOnWindowFocus: false,
-  })
+  });
 }
