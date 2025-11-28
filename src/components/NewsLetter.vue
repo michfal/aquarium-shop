@@ -4,9 +4,6 @@
   <section
     class="relative bg-gradient-to-b from-cyan-600 to-cyan-800 text-white py-16 px-4 text-center bg-[url(@/assets/img/waves.png)] sm:h-100 flex flex-column items-center"
   >
-    <!-- Tło fal -->
-
-    <!-- Treść -->
     <div class="relative z-10 max-w-2xl mx-auto">
       <h2 class="text-2xl md:text-4xl font-bold mb-4 text-white">
         DOŁĄCZ DO NASZEJ <br />
@@ -14,7 +11,6 @@
       </h2>
       <p class="text-lg mb-6">Dołącz do naszej społeczności akwarystów</p>
 
-      <!-- Formularz -->
       <form class="flex flex-col sm:flex-row items-center justify-center gap-3">
         <input
           type="email"

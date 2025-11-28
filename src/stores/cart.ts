@@ -1,4 +1,3 @@
-// stores/cart.ts
 import { defineStore } from 'pinia';
 import type { CartItem, CartState, ShippingOption } from '@/types';
 
@@ -50,13 +49,10 @@ export const useCartStore = defineStore('cart', {
     add(item: Omit<CartItem, 'qty'>, qty = 1) {
       if (qty <= 0) return;
       const existing = this.items.find((i) => i.id === item.id);
-      console.log(existing);
       if (existing) {
-        console.log('existing');
         existing.qty += qty;
       } else {
         this.items.push({ ...item, qty });
-        console.log(this.items);
       }
     },
 
