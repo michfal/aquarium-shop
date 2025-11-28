@@ -32,7 +32,8 @@ export const useCartStore = defineStore('cart', {
     lineTotal: (state) => {
       return (id: number) => {
         const item = state.items.find((item) => item.id === id);
-        return item ? item.price * item.qty : null;
+        const total = item ? item.price * item.qty : null;
+        return total && toMoney(total);
       };
     },
     isEmpty(): boolean {

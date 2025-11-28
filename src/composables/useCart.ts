@@ -1,6 +1,7 @@
 import type { ProductWithUrl } from '@/types';
 import { useCartStore } from '@/stores/cart';
 import { storeToRefs } from 'pinia';
+import { toast } from 'vue3-toastify';
 
 export function useCart() {
   const cart = useCartStore();
@@ -20,6 +21,7 @@ export function useCart() {
       },
       qty,
     );
+    toast.info("Product Added")
   }
 
   function inc(id: number) {
