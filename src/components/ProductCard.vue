@@ -50,7 +50,7 @@ const { product } = toRefs(props);
     <button
       type="button"
       @click="handleAdd(product)"
-      class="mt-4 w-full rounded-xl bg-orange-500 px-4 py-3 text-white font-semibold tracking-wide shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500/30 active:translate-y-px transition"
+      class="mt-4 w-full rounded-xl bg-orange-500 px-4 py-3 text-white font-semibold tracking-wide shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500/30 active:translate-y-px transition cursor-pointer"
     >
       Add to cart
     </button>

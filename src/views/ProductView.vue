@@ -48,7 +48,7 @@ function handleAdd(product: ProductWithUrl) {
             <button
               @click="product && handleAdd(product)"
               type="button"
-              class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-white font-semibold shadow-sm"
+              class="mt-4 w-full rounded-xl bg-orange-500 px-4 py-3 text-white font-semibold tracking-wide shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500/30 active:translate-y-px transition cursor-pointer"
             >
               Add to cart
             </button>
