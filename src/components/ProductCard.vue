@@ -10,13 +10,6 @@ function handleAdd(product: ProductWithUrl) {
   addToCart(product, 1);
 }
 
-// defineProps<{
-//   name?: string;
-//   price?: number;
-//   imageSrc?: string | null;
-//   alt?: string;
-//   id?: number;
-// }>();
 const props = defineProps<{
   product: ProductWithUrl;
 }>();
@@ -28,8 +21,7 @@ const { product } = toRefs(props);
   <article
     class="w-full rounded-2xl border border-slate-200/50 bg-gray-50 shadow-sm p-4 sm:flex sm:flex-col hover:brightness-98"
   >
-    <!-- obrazek -->
-    <RouterLink :to="'/product/' + product.id">
+    <RouterLink :to="'/product/' + product.id" class="no-underline hover:no-underline">
       <div class="mx-auto aspect-[1/1] w-36 overflow-hidden row-span-3">
         <img
           v-if="product.imageUrl"
