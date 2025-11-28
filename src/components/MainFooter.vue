@@ -25,10 +25,8 @@ import { RouterLink } from 'vue-router';
           <RouterLink to="/faq" class="text-white/90 hover:text-white transition-colors"
             >FAQ</RouterLink
           >
-          <!-- <RouterLink to="/complaints" class="text-white/90 hover:text-white transition-colors">Zwroty</RouterLink> -->
         </nav>
 
-        <!-- Ikony -->
         <div class="flex items-center gap-4">
           <!-- Instagram -->
           <a
@@ -68,7 +66,6 @@ import { RouterLink } from 'vue-router';
         <RouterLink to="/faq" class="text-white/90 hover:text-white whitespace-nowrap"
           >FAQ</RouterLink
         >
-        <!-- <RouterLink to="/zwroty" class="text-white/90 hover:text-white whitespace-nowrap">Zwroty</RouterLink> -->
       </nav>
     </div>
   </footer>

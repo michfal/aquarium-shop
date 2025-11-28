@@ -10,7 +10,7 @@ defineProps<{
 </script>
 <template>
   <article class="w-full rounded-3xl bg-sky-50 p-4 sm:p-6 hover:brightness-98">
-    <RouterLink :to="'/categories/' + id" class="flex items-center gap-4 w-full sm:gap-6">
+    <RouterLink :to="'/categories/' + id" class="flex items-center gap-4 w-full sm:gap-6 no-underline hover:no-underline">
       <div class="shrink-0 grid place-items-center w-20 h-28 sm:w-24 sm:h-32">
         <img
           v-if="imageSrc"
@@ -32,7 +32,7 @@ defineProps<{
         </p>
 
         <span
-          class="mt-3 inline-block font-medium tracking-wide text-sm text-brand-orange hover:underline"
+          class="mt-3 inline-block font-medium tracking-wide text-sm text-brand-orange"
         >
           View more
         </span>
