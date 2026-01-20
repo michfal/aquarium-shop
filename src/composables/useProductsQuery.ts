@@ -48,7 +48,7 @@ export function useProductQuery() {
     queryKey: ['product', id],
     queryFn: () => getProductsByIdWithImages(id.value),
     enabled: computed(() => Number.isFinite(id.value)),
-    ...(seeded && { initialData: seeded }), // tylko gdy mamy seed
+    ...(seeded && { initialData: seeded }),
     staleTime: 60_000,
   });
 }
