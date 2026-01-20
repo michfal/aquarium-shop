@@ -28,7 +28,10 @@ export const useCartStore = defineStore('cart', {
       };
     },
     countTotal: (state) => state.items.reduce((sum, item) => sum + item.qty, 0),
-    subtotal: (state) => state.items.reduce((sum, item) => sum + item.price * item.qty, 0),
+    subtotal: (state) => {
+      const total = state.items.reduce((sum, item) => sum + item.price * item.qty, 0)
+      return toMoney(total);
+    },
     lineTotal: (state) => {
       return (id: number) => {
         const item = state.items.find((item) => item.id === id);

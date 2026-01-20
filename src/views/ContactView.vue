@@ -9,7 +9,6 @@
       </p>
 
       <div class="grid md:grid-cols-2 gap-10">
-        <!-- Contact Information -->
         <div class="space-y-6">
           <div>
             <h2 class="text-xl font-semibold mb-2">Our Address</h2>
@@ -46,7 +45,6 @@
           </div>
         </div>
 
-        <!-- Map / Image Section -->
         <div class="flex flex-col justify-center">
           <div class="rounded-2xl overflow-hidden shadow-md">
             <img

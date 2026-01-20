@@ -21,11 +21,11 @@ function onQtyInput(id: number, e: Event) {
 <template>
   <div class="min-h-screen flex flex-col bg-slate-50">
     <MainHeading title="Checkout" subtitle="Review your products before placing the order." />
-    <!-- Main content -->
+
     <main class="flex-1">
       <div class="container mx-auto px-4 py-10">
         <div class="grid lg:grid-cols-[minmax(0,2fr)_minmax(260px,1fr)] gap-8">
-          <!-- Cart -->
+
           <section>
             <h2 class="text-lg font-bold text-slate-800 mb-4">Products</h2>
 
@@ -110,7 +110,6 @@ function onQtyInput(id: number, e: Event) {
             </div>
           </section>
 
-          <!-- Summary -->
           <aside class="space-y-6">
             <section class="bg-white rounded-2xl shadow-md p-5">
               <h2 class="text-lg font-bold text-slate-800 mb-4">Summary</h2>
