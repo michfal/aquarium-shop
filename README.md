@@ -1,39 +1,83 @@
-# aqua-shop
+# 🐠 Aquarium Shop – E-commerce Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+A **e-commerce frontend application** for an aquarium store, created as a **portfolio project**.
 
-## Recommended IDE Setup
+The project demonstrates real-world frontend development skills, including:
+- scalable component architecture,
+- clean and maintainable TypeScript code,
+- good UX practices (loading states, skeletons),
+- integration with a real backend service.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Type Support for `.vue` Imports in TS
+## 🎯 Project Purpose
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+This project was built as a **realistic showcase application**, similar to what is commonly developed in commercial environments.
 
-## Customize configuration
+It focuses on:
+- consuming real backend data instead of mock data,
+- handling asynchronous data fetching and UI states,
+- demonstrating architectural decision-making,
+- creating a solid foundation for further feature expansion.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+The project serves as a **portfolio piece** for recruiters and technical reviewers.
 
-## Project Setup
+---
 
-```sh
+## 🛠️ Tech Stack
+
+### Frontend
+- **Vue 3** (Composition API)
+- **TypeScript**
+- **Vite**
+- **Pinia** – state management
+- **Vue Router**
+- **SCSS / CSS Modules**
+
+### Backend / Data
+- **Supabase** – PostgreSQL database & API
+- Supabase client for data fetching
+
+### Tooling
+- **ESLint + Prettier**
+
+---
+
+## ✨ Features
+
+- product list fetched from **Supabase**,
+- reusable product card components,
+- skeleton loaders while data is loading,
+- responsive layout (desktop & mobile),
+- clean separation of UI and data-fetching logic,
+- ready for further Supabase features (auth, storage).
+
+---
+
+## 🧠 Architectural Decisions
+
+- **Composition API** for better logic reuse and readability,
+- **Pinia** for centralized state and async data handling,
+- **Supabase** as a backend-as-a-service to simulate real API usage,
+- **Skeleton loaders** instead of spinners for better perceived performance,
+- modular folder structure (`components`, `views`, `stores`).
+
+---
+
+## 🔌 Data Flow
+
+1. Frontend requests data using the Supabase client.
+2. Data is fetched from a PostgreSQL database.
+3. Application state is managed via Pinia stores.
+4. UI displays skeleton loaders until data is resolved.
+
+---
+
+## 🚀 Local Setup
+
+```bash
+git clone https://github.com/michfal/aquarium-shop.git
+cd aquarium-shop
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
