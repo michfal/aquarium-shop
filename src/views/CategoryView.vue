@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 import { useProductsQuery } from '@/composables/useProductsQuery';
 import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
 import { computed } from 'vue';
+import ProductPlaceholderGrid from '@/components/ProductPlaceholderGrid.vue';
 
 const route = useRoute();
 const categoryId = computed(() => Number(route.params.id));
@@ -24,17 +25,9 @@ const category = computed(() => categories.value?.find((c) => c.id == categoryId
   <MainHeading :title="category?.name" :subtitle="category?.description" />
   <section class="py-9 px-5">
     <h1 class="max-w-5xl mx-auto font-heading text-2xl text-left pb-5">{{ category?.name }}</h1>
-    <div
-      v-if="prodLoading"
-      class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-    >
-      <p>Categories loading...</p>
-    </div>
+    <ProductPlaceholderGrid v-if="prodLoading" :count="6" />
     <p v-else-if="prodError">Błąd: {{ prodError.message }}</p>
-    <div
-      v-else
-      class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-    >
+    <div v-else class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
       <ProductCard
         v-for="p in products"
         :product="p"

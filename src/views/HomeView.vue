@@ -5,6 +5,8 @@ import NewsLetter from '@/components/NewsLetter.vue';
 import MainHeading from '@/components/MainHeading.vue';
 import { useRecommendedProductsQuery } from '@/composables/useProductsQuery';
 import { useCategoriesQuery } from '@/composables/useCategoriesQuery';
+import ProductPlaceholderGrid from '@/components/ProductPlaceholderGrid.vue';
+import CategoryPlaceholderGrid from '@/components/CategoryPlaceholderGrid.vue';
 
 defineProps<{
   title?: string;
@@ -19,12 +21,7 @@ const { data: recommended, isLoading: recLoading, error: recError } = useRecomme
   <MainHeading title="Aqua-Shop" subtitle="The best aquarium products in one place." />
   <section class="py-9 px-5">
     <h1 class="font-heading text-2xl text-center pb-5">Categories</h1>
-    <div
-      v-if="catLoading"
-      class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-    >
-      <p>Ładowanie kategorii…</p>
-    </div>
+    <CategoryPlaceholderGrid v-if="catLoading" :count="6"/>
     <p v-else-if="catError">Błąd: {{ catError.message }}</p>
     <div
       v-else
@@ -42,12 +39,7 @@ const { data: recommended, isLoading: recLoading, error: recError } = useRecomme
   </section>
   <section class="py-9 px-5">
     <h1 class="font-heading text-2xl text-center pb-5">Recommended</h1>
-    <div
-      v-if="recLoading"
-      class="max-w-5xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
-    >
-      <p>Ładowanie kategorii…</p>
-    </div>
+    <ProductPlaceholderGrid v-if="recLoading" :count="3"/>
     <p v-else-if="recError">Błąd: {{ recError.message }}</p>
     <div
       v-else
